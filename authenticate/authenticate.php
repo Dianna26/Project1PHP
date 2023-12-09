@@ -1,6 +1,6 @@
 <?php
 
-include './database/db.php';
+include '../database/db.php';
 
 session_start();
 
@@ -25,7 +25,7 @@ if ($_POST['password'] === $finalResult['parola']) {
     $_SESSION['name'] = $finalResult['nume'];
     $_SESSION['id'] = $finalResult['id_utilizator'];
     echo 'Bine ati venit' . $_SESSION['name'] . '!';
-    header('Location: home/home.php');
+    header('Location: ../home/home.php');
 }
 
 // if (password_verify($_POST['password'], $password)) 
