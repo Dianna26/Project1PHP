@@ -25,11 +25,10 @@ function getAllApprovedArticles()
 {
     $con = connectToDatabase();
     $stmt = $con->prepare('
-    SELECT articole.*, categorii.nume_categorie
-    FROM articole
-    JOIN categorii ON articole.id_categorie = categorii.id_categorie
-    WHERE aprobat = 1
-    ');
+        SELECT articole.*, categorii.nume_categorie
+        FROM articole
+        JOIN categorii ON articole.id_categorie = categorii.id_categorie
+        WHERE aprobat = 1');
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -56,6 +55,6 @@ function getAllArticles()
         return [];
     }
 
-    $finalResult = $result->fetch_all(MYSQLI_ASSOC);
-    return $finalResult;
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
+
