@@ -3,7 +3,7 @@
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
-$DATABASE_NAME = 'magazin';
+$DATABASE_NAME = 'article_management';
 
 // Încerc să mă conectez pe baza informațiilor de mai sus.
 
@@ -44,7 +44,7 @@ if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
 }
 
 // Verificăm dacă contul utilizatorului există.
-if ($stmt = $con->prepare('SELECT id, password FROM utilizatori WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT id_utilizator, parola FROM utilizatori WHERE nume = ?')) {
     // Hash parola folosind funcția PHP password_hash.
     $stmt->bind_param('s', $_POST['username']);
     $stmt->execute();
@@ -55,7 +55,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM utilizatori WHERE username =
         // Numele de utilizator există.
         echo 'Numele de utilizator există, alegeți altul!';
     } else {
-        if ($stmt = $con->prepare('INSERT INTO utilizatori (username, parola, email) VALUES (?, ?, ?)')) {
+        if ($stmt = $con->prepare('INSERT INTO utilizatori (nume, parola, email) VALUES (?, ?, ?)')) {
             // Nu dorim să stocăm parole în clar în baza de date, așa că hash parola și utilizăm
             // password_verify atunci când un utilizator se autentifică.
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -63,7 +63,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM utilizatori WHERE username =
             $stmt->execute();
             echo 'Înregistrare cu succes!';
 
-            header('Location: index.html');
+            header('Location: ../index.html');
         } else {
             // Ceva nu este în regulă cu declarația SQL, verificați pentru a vă asigura că tabelul utilizatori există cu toate cele 3 câmpuri.
             echo 'Nu se poate pregăti declarația SQL!';
@@ -75,4 +75,4 @@ if ($stmt = $con->prepare('SELECT id, password FROM utilizatori WHERE username =
     echo 'Nu se poate pregăti declarația SQL!';
 }
 $con->close();
-?>
+
