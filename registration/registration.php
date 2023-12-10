@@ -20,13 +20,13 @@ if (mysqli_connect_errno()) {
 }
 
 // Verificați dacă toate câmpurile necesare sunt trimise prin POST.
-if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
+if (!isset($_POST['username'], $_POST['password'], $_POST['email'], $_POST['role'])) {
     // Nu s-au putut obține datele care ar fi trebuit trimise.
     exit('Completați formularul de înregistrare!');
 }
 
 // Asigurați-vă că valorile trimise prin POST nu sunt goale.
-if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email'])) {
+if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email'] || $_POST['role'])) {
     // Unul sau mai multe câmpuri sunt goale.
     exit('Completați formularul de înregistrare!');
 }
@@ -44,7 +44,7 @@ if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
 }
 
 // Verificăm dacă contul utilizatorului există.
-if ($stmt = $con->prepare('SELECT id_utilizator, parola FROM utilizatori WHERE nume = ?')) {
+if ($stmt = $con->prepare('SELECT id, parola FROM utilizatori WHERE nume = ?')) {
     // Hash parola folosind funcția PHP password_hash.
     $stmt->bind_param('s', $_POST['username']);
     $stmt->execute();
@@ -55,15 +55,14 @@ if ($stmt = $con->prepare('SELECT id_utilizator, parola FROM utilizatori WHERE n
         // Numele de utilizator există.
         echo 'Numele de utilizator există, alegeți altul!';
     } else {
-        if ($stmt = $con->prepare('INSERT INTO utilizatori (nume, parola, email) VALUES (?, ?, ?)')) {
+        if ($stmt = $con->prepare('INSERT INTO utilizatori (nume, parola, email, rol_id) VALUES (?, ?, ?, ?)')) {
             // Nu dorim să stocăm parole în clar în baza de date, așa că hash parola și utilizăm
             // password_verify atunci când un utilizator se autentifică.
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
+            $stmt->bind_param('sssi', $_POST['username'], $password, $_POST['email'], $_POST['role']);
             $stmt->execute();
-            echo 'Înregistrare cu succes!';
 
-            header('Location: ../login.html');
+            header('Location: ../login/login.html');
         } else {
             // Ceva nu este în regulă cu declarația SQL, verificați pentru a vă asigura că tabelul utilizatori există cu toate cele 3 câmpuri.
             echo 'Nu se poate pregăti declarația SQL!';
@@ -74,4 +73,5 @@ if ($stmt = $con->prepare('SELECT id_utilizator, parola FROM utilizatori WHERE n
     // Ceva nu este în regulă cu declarația SQL, verificați pentru a vă asigura că tabelul utilizatori există cu toate cele 3 câmpuri.
     echo 'Nu se poate pregăti declarația SQL!';
 }
+
 $con->close();

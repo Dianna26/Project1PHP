@@ -3,28 +3,28 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Manager de Articole</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class="login">
-    <h1>Login</h1>
-    <form action="../authenticate/authenticate.php" method="post">
+    <h1>Logare</h1>
+    <form action="login.php" method="post">
         <label for="username">
             <i class="fas fa-user"></i>
         </label>
         <input type="text" name="username"
-               placeholder="Username" id="username" required>
+               placeholder="Utilizator" id="username" required>
 
         <label for="password">
             <i class="fas fa-lock"></i>
         </label>
         <input type="password" name="password"
-               placeholder="Password" id="password" required>
-        <input type="submit" value="Login">
+               placeholder="Parola" id="password" required>
+        <input type="submit" value="Logare">
 
-        <a href="../registration/registration.html"><input type="button" value="New User Registration"></a>
+        <a href="../registration/registration.html"><input type="button" value="Inregistrare nou utilizator"></a>
     </form>
     <div>
 

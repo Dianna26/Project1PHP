@@ -2,30 +2,42 @@
 <html lang="">
 <head>
     <meta charset="utf-8">
-    <title>Inregistrare</title>
+    <title>Manager de Articole</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="register">
-    <h1>Register</h1>
+    <h1>Inregistrare user nou</h1>
     <form action="registration.php" method="post"
           autocomplete="off">
         <label for="username">
             <i class="fas fa-user"></i>
         </label>
         <input type="text" name="username"
-               placeholder="Username" id="username" required>
+               placeholder="Utilizator" id="username" required>
+
         <label for="password">
             <i class="fas fa-lock"></i>
         </label>
         <input type="password" name="password"
-               placeholder="Password" id="password" required>
+               placeholder="Parola" id="password" required>
+
         <label for="email">
             <i class="fas fa-envelope"></i>
         </label>
         <input type="email" name="email"
-               placeholder="Email" id="email" required>
-        <input type="submit" value="Register">
+               placeholder="Adresa de email" id="email" required>
+        <input type="submit" value="Inregistrare">
+
+        <label for="role">
+        </label>
+        <select name="role" id="role" required>
+            <option value="2">Cititor</option>
+            <option value="3">Editor</option>
+            <option value="1">Jurnalist</option>
+        </select>
+
+        <a href="../login/login.html"><input type="button" value="Logare user existent"></a>
     </form>
 </div>
 </body>

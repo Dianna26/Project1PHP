@@ -37,18 +37,56 @@ function getAllApprovedArticles()
         return [];
     }
 
-    $finalResult = $result->fetch_all(MYSQLI_ASSOC);
-    return $finalResult;
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-function getAllArticles()
+/**
+ * Returneaza o lista cu toate articolele pentru un anumit utilizator si rol.
+ * Pentru editori toate sunt returnate.
+ * Pentru jurnalisti, doar cele aprobate sau cele personale.
+ * Pentru orice alt utilizator, cele aprobate.
+ * @param $rol string Rolul utilizatorului.
+ * @param $id integer Id-ul utilizatorului.
+ * @return array Lista cu articole.
+ */
+function getAllArticles($rol, $id)
 {
     $con = connectToDatabase();
-    $stmt = $con->prepare('
+    $sql = '
     SELECT articole.*, categorii.nume_categorie
     FROM articole
     JOIN categorii ON articole.id_categorie = categorii.id_categorie
-    ');
+    ';
+
+    switch ($rol) {
+        case 'editor':
+            // toate
+            break;
+        case 'jurnalist':
+            // aprobate plus cele personale
+            $sql .= '
+                WHERE articole.aprobat = 1 
+                OR articole.id_utilizator = ?
+            ';
+            break;
+        default:
+            // doar cele aprobate
+            $sql .= '
+                WHERE articole.aprobat = 1
+            ';
+            break;
+    }
+
+    $sql .= '
+        ORDER BY articole.data_publicare DESC
+    ';
+
+    $stmt = $con->prepare($sql);
+
+    if ($rol === 'jurnalist') {
+        $stmt->bind_param('i', $id);
+    }
+
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -56,8 +94,7 @@ function getAllArticles()
         return [];
     }
 
-    $finalResult = $result->fetch_all(MYSQLI_ASSOC);
-    return $finalResult;
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function getAllUnapprovedArticles()
@@ -76,8 +113,7 @@ function getAllUnapprovedArticles()
         return [];
     }
 
-    $finalResult = $result->fetch_all(MYSQLI_ASSOC);
-    return $finalResult;
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function approveArticle($articleId)
@@ -118,8 +154,7 @@ function getArticleById($articleId)
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $article = $result->fetch_assoc();
-        return $article;
+        return $result->fetch_assoc();
     }
     return null;
 }
