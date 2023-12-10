@@ -60,6 +60,38 @@ function getAllArticles()
     return $finalResult;
 }
 
+function getAllUnapprovedArticles()
+{
+    $con = connectToDatabase();
+    $stmt = $con->prepare('
+    SELECT articole.*, categorii.nume_categorie
+    FROM articole
+    JOIN categorii ON articole.id_categorie = categorii.id_categorie
+    WHERE aprobat = 0
+    ');
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        return [];
+    }
+
+    $finalResult = $result->fetch_all(MYSQLI_ASSOC);
+    return $finalResult;
+}
+
+function approveArticle($articleId)
+{
+    $con = connectToDatabase();
+    $stmt = $con->prepare('UPDATE articole SET aprobat = 1 WHERE id_articol = ?');
+    $stmt->bind_param('i', $articleId);
+
+    if ($stmt->execute()) {
+        return true;
+    }
+    return false;
+}
+
 function getCategoryIDByName($categoryName)
 {
     $con = connectToDatabase();
