@@ -21,6 +21,9 @@ if (!isset($_SESSION['loggedin'])) {
 <body>
     <div class="container">
         <?php
+        // Include the navbar
+        include '../navbar/index.php';
+
         // Display the button for users with the role "jurnalist"
         if ($_SESSION['rol'] === 'jurnalist') : ?>
             <a href="../addArticle/index.php" class="button">Add Article</a>
@@ -41,8 +44,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
-
-
     </div>
 </body>
 

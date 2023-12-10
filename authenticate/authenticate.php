@@ -29,5 +29,4 @@ if (password_verify($_POST['password'], $finalResult['parola'])) {
     header('Location: ../home/home.php');
 }
 
-// if (password_verify($_POST['password'], $password)) 
 $stmt->close();
