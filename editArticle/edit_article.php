@@ -2,8 +2,8 @@
 include '../database/db.php';
 
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 'jurnalist') {
-    header('Location: index.php');
+if (!isset($_SESSION['loggedin']) || ($_SESSION['rol'] !== 'jurnalist' && $_SESSION['rol'] !== 'editor')) {
+    header('Location: ../home/home.php');
     exit;
 }
 

@@ -1,0 +1,30 @@
+.app-header {
+    text-align: center;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-title {
+    color: #333; /* Culoarea titlului */
+}
+
+.logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4285f4; /* Culoarea de fundal a butonului (Google Blue) */
+    color: white; /* Culoarea textului butonului */
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    background-color: #3c72cb; /* Culoarea de fundal la hover */
+}
+
+.logout-icon {
+    margin-right: 5px;
+}
