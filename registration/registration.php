@@ -75,4 +75,3 @@ if ($stmt = $con->prepare('SELECT id, parola FROM utilizatori WHERE nume = ?')) 
 }
 
 $con->close();
-

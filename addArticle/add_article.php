@@ -3,7 +3,7 @@ include '../database/db.php';
 
 
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 'jurnalist' && $_SESSION['rol'] !== 'editor') {
+if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 1 && $_SESSION['rol'] !== 3) {
     header('Location: index.php');
     exit;
 }

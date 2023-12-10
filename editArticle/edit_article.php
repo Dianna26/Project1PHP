@@ -2,7 +2,7 @@
 include '../database/db.php';
 
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 'cititor' && $_SESSION['rol'] !== 'jurnalist') {
+if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 1 && $_SESSION['rol'] !== 2) {
     header('Location: index.php');
     exit;
 }
