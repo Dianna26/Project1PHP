@@ -77,7 +77,10 @@ if (!$article) {
 
         <div class="button-container">
             <button type="button" class="back-btn" onclick="window.history.back()">Back</button>
-            <button type="submit">Update Article</button>
+<!--            <button type="submit">Update Article</button>-->
+            <form action="../home/home.php" method="post">
+                <button type="submit">Update Article</button>
+            </form>
         </div>
     </form>
 </div>

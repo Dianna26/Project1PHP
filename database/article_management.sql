@@ -108,21 +108,6 @@ CREATE TABLE roluri
     rol VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE permisiuni
-(
-    id              INT PRIMARY KEY AUTO_INCREMENT,
-    nume_permisiune VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE roluri_permisiuni
-(
-    id            INT PRIMARY KEY AUTO_INCREMENT,
-    id_rol        INT,
-    id_permisiune INT,
-    FOREIGN KEY (id_rol) REFERENCES roluri (id),
-    FOREIGN KEY (id_permisiune) REFERENCES permisiuni (id)
-);
-
 INSERT INTO `roluri` (`rol`)
 VALUES ('jurnalist'),
        ('cititor'),

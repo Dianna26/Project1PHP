@@ -1,14 +1,16 @@
 <?php
 include '../database/db.php';
 
+session_start();
+
 if (!isset($_SESSION['loggedin'])) {
-    header('Location: index.php');
+    header('Location: ../login/login.html');
     exit;
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="">
 
 <head>
     <meta charset="utf-8">
