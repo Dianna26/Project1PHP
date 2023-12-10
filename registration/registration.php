@@ -74,5 +74,6 @@ if ($stmt = $con->prepare('SELECT id_utilizator, parola FROM utilizatori WHERE n
     // Ceva nu este în regulă cu declarația SQL, verificați pentru a vă asigura că tabelul utilizatori există cu toate cele 3 câmpuri.
     echo 'Nu se poate pregăti declarația SQL!';
 }
+
 $con->close();
 

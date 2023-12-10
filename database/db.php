@@ -21,6 +21,24 @@ function connectToDatabase()
     return $con;
 }
 
+function getUserRole($username)
+{
+    $con = connectToDatabase();
+    $stmt = $con->prepare('SELECT rol FROM utilizatori WHERE nume = ?');
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        // Handle the case where the username is not found
+        return null;
+    } else {
+        // Fetch the user role from the result
+        $row = $result->fetch_assoc();
+        return $row['rol'];
+    }
+}
+
 function getAllApprovedArticles()
 {
     $con = connectToDatabase();
@@ -37,8 +55,7 @@ function getAllApprovedArticles()
         return [];
     }
 
-    $finalResult = $result->fetch_all(MYSQLI_ASSOC);
-    return $finalResult;
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function getAllArticles()
@@ -56,8 +73,7 @@ function getAllArticles()
         return [];
     }
 
-    $finalResult = $result->fetch_all(MYSQLI_ASSOC);
-    return $finalResult;
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function getAllUnapprovedArticles()
@@ -76,8 +92,7 @@ function getAllUnapprovedArticles()
         return [];
     }
 
-    $finalResult = $result->fetch_all(MYSQLI_ASSOC);
-    return $finalResult;
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function approveArticle($articleId)
@@ -118,8 +133,7 @@ function getArticleById($articleId)
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $article = $result->fetch_assoc();
-        return $article;
+        return $result->fetch_assoc();
     }
     return null;
 }

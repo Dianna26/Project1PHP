@@ -7,25 +7,29 @@
 </head>
 <body>
 <div class="register">
-    <h1>Register</h1>
+    <h1>Inregistrare user nou</h1>
     <form action="registration.php" method="post"
           autocomplete="off">
         <label for="username">
             <i class="fas fa-user"></i>
         </label>
         <input type="text" name="username"
-               placeholder="Username" id="username" required>
+               placeholder="Utilizator" id="username" required>
+
         <label for="password">
             <i class="fas fa-lock"></i>
         </label>
         <input type="password" name="password"
-               placeholder="Password" id="password" required>
+               placeholder="Parola" id="password" required>
+
         <label for="email">
             <i class="fas fa-envelope"></i>
         </label>
         <input type="email" name="email"
-               placeholder="Email" id="email" required>
-        <input type="submit" value="Register">
+               placeholder="Adresa de email" id="email" required>
+        <input type="submit" value="Inregistrare">
+
+        <a href="../login/login.html"><input type="button" value="Logare user existent"></a>
     </form>
 </div>
 </body>
