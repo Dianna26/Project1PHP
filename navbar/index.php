@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <title>Management De Articole</title>
-    <link href="../home/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../navbar/style.css">
 </head>
 
 <body class="loggedin">
     <nav class="navtop">
-        <div>
-            <h1>Management De Articole</h1>
-            <a href="../logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        <div class="app-header">
+            <h1 class="app-title">Diferite Articole Pentru Lectura</h1>
+            <div> <a class="logout-button" href="../logout.php">Logout</a></div>
         </div>
     </nav>
 </body>

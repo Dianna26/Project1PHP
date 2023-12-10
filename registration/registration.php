@@ -75,4 +75,3 @@ if ($stmt = $con->prepare('SELECT id_utilizator, parola FROM utilizatori WHERE n
     echo 'Nu se poate pregăti declarația SQL!';
 }
 $con->close();
-
