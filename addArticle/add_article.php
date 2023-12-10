@@ -3,7 +3,7 @@ include '../database/db.php';
 
 
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 1 && $_SESSION['rol'] !== 3) {
+if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 'editor' && $_SESSION['rol'] !== 'jurnalist') {
     header('Location: index.php');
     exit;
 }
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $con = connectToDatabase();
     $stmt = $con->prepare('INSERT INTO articole (id_utilizator, id_categorie, titlu, continut, data_publicare, aprobat) VALUES (?, ?, ?, ?, ?, 0)');
     $getCategoryIDByName = getCategoryIDByName($category);
-    $stmt->bind_param('issss', $_SESSION['id'], $getCategoryIDByName, $title, $content, $publishDate);
+    $stmt->bind_param('issss', $_SESSION['id_utilizator'], $getCategoryIDByName, $title, $content, $publishDate);
 
     if ($stmt->execute()) {
         header('Location: ../home/home.php');

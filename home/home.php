@@ -23,18 +23,18 @@ if (!isset($_SESSION['loggedin'])) {
 <div class="container">
     <?php include '../navbar/index.php'; ?>
 
-    <?php if (in_array($_SESSION['rol'], [1, 3])) : ?>
+    <?php if (in_array($_SESSION['rol'], ['jurnalist', 'editor'])) : ?>
         <a href="../addArticle/index.php" class="button">Add Article</a>
     <?php endif; ?>
 
 
     <?php
-    if ($_SESSION['rol'] === 3) : ?>
+    if ($_SESSION['rol'] === 'editor') : ?>
         <a href="../unapprovedArticles/index.php" class="button">Unapproved Articles</a>
     <?php endif; ?>
 
     <?php
-    $articles = getAllApprovedArticles();
+    $articles = getAllArticles($_SESSION['rol'], $_SESSION['id_utilizator']);
     $readMoreArticleId = isset($_GET['read_more']) ? $_GET['read_more'] : null;
 
     foreach ($articles as $article) : ?>
@@ -59,9 +59,9 @@ if (!isset($_SESSION['loggedin'])) {
                 }
                 ?>
             </p>
-            <p class="category"><?php echo $article['nume_categorie'] ?></p>
-            <p class="publish-date"><?php echo $article['data_publicare'] ?></p>
-            <?php if (in_array($_SESSION['rol'], ['jurnalist', 'editor'])) : ?>
+            <p class="tag category"><?php echo $article['nume_categorie'] ?></p>
+            <p class="tag publish-date"><?php echo $article['data_publicare'] ?></p>
+            <?php if ($_SESSION['rol'] === 'editor') : ?>
                 <a href="../editArticle/index.php?article_id=<?php echo $article['id_articol']; ?>" class="edit-button">Edit</a>
             <?php endif; ?>
         </div>

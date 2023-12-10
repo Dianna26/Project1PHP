@@ -6,7 +6,12 @@ session_start();
 
 $con = connectToDatabase();
 
-$stmt = $con->prepare('SELECT u.*, r.* FROM utilizatori u INNER JOIN roluri r WHERE u.nume = ?');
+$stmt = $con->prepare('
+    SELECT u.*, r.* 
+    FROM utilizatori u 
+    INNER JOIN roluri r ON u.rol_id = r.id 
+    WHERE u.nume = ?
+');
 $stmt->bind_param('s', $_POST['username']);
 $stmt->execute();
 $result = $stmt->get_result();

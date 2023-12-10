@@ -81,19 +81,35 @@ body {
 }
 
 .read-more-button,
-        .read-less-button {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #2196F3;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+.read-less-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #2196F3;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
-        .read-more-button:hover,
-        .read-less-button:hover {
-            background-color: #0d47a1;
-        }
+.read-more-button:hover,
+.read-less-button:hover {
+    background-color: #0d47a1;
+}
+
+.tag + .tag {
+    margin-left: 10px;
+}
+
+.tag {
+    background-color: #ccc;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: inline;
+    color: #fff !important;
+}
+
+.short-content {
+    display: block;
+}

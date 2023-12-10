@@ -2,10 +2,6 @@
 include '../database/db.php';
 
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 1 && $_SESSION['rol'] !== 2) {
-    header('Location: index.php');
-    exit;
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $articleId = $_POST['article_id'];
