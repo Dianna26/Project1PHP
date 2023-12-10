@@ -2,7 +2,7 @@
 include '../database/db.php';
 
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 'jurnalist') {
+if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 'cititor' && $_SESSION['rol'] !== 'jurnalist') {
     header('Location: index.php');
     exit;
 }
@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $con = connectToDatabase();
     $stmt = $con->prepare('UPDATE articole SET id_categorie = ?, titlu = ?, continut = ?, data_publicare = ? WHERE id_articol = ?');
-    $stmt->bind_param('isssi', getCategoryIDByName($category), $title, $content, $publishDate, $articleId);
+    $getCategoryIDByName = getCategoryIDByName($category);
+    $stmt->bind_param('isssi', $getCategoryIDByName, $title, $content, $publishDate, $articleId);
 
     if ($stmt->execute()) {
         header('Location: ../home/home.php');

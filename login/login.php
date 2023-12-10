@@ -6,7 +6,7 @@ session_start();
 
 $con = connectToDatabase();
 
-$stmt = $con->prepare('SELECT * FROM utilizatori WHERE nume = ?');
+$stmt = $con->prepare('SELECT u.*, r.* FROM utilizatori u INNER JOIN roluri r WHERE u.nume = ?');
 $stmt->bind_param('s', $_POST['username']);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -24,7 +24,7 @@ if (password_verify($_POST['password'], $finalResult['parola'])) {
     $_SESSION['email'] = $finalResult['email'];
     $_SESSION['rol'] = $finalResult['rol'];
     $_SESSION['name'] = $finalResult['nume'];
-    $_SESSION['id_utilizator'] = $finalResult['id_utilizator'];
+    $_SESSION['id_utilizator'] = $finalResult['id'];
     echo 'Bine ati venit' . $_SESSION['name'] . '!';
     header('Location: ../home/home.php');
 }
