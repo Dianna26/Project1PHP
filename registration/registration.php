@@ -63,7 +63,7 @@ if ($stmt = $con->prepare('SELECT id_utilizator, parola FROM utilizatori WHERE n
             $stmt->execute();
             echo 'Înregistrare cu succes!';
 
-            header('Location: ../index.html');
+            header('Location: ../login.html');
         } else {
             // Ceva nu este în regulă cu declarația SQL, verificați pentru a vă asigura că tabelul utilizatori există cu toate cele 3 câmpuri.
             echo 'Nu se poate pregăti declarația SQL!';

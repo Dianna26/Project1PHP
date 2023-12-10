@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class="login">
     <h1>Login</h1>
-    <form action="authenticate/authenticate.php" method="post">
+    <form action="../authenticate/authenticate.php" method="post">
         <label for="username">
             <i class="fas fa-user"></i>
         </label>
@@ -23,8 +23,12 @@
         <input type="password" name="password"
                placeholder="Password" id="password" required>
         <input type="submit" value="Login">
+
+        <a href="../registration/registration.html"><input type="button" value="New User Registration"></a>
     </form>
-    <div><a href="registration/registration.html">Nou utilizator</a></div>
+    <div>
+
+    </div>
 </div>
 </body>
 
