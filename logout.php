@@ -2,5 +2,6 @@
 session_start();
 $_SESSION = array();
 session_destroy();
-// Redirectare paginaprincipala produse:
+
+// Redirect to the login page
 header('Location: login/login.html');

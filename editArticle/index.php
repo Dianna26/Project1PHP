@@ -3,20 +3,20 @@ include '../database/db.php';
 
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-    header('Location: index.php');
+    header('Location: navbar.php');
     exit;
 }
 
 // if ($_SESSION['rol'] !== 'editor') {
 //     // Redirect users without editor role
-//     header('Location: index.php');
+//     header('Location: navbar.php');
 //     exit;
 // }
 
 // Check if article_id is provided in the URL
 if (!isset($_GET['article_id']) || !is_numeric($_GET['article_id'])) {
     // Redirect if article_id is not provided or is not a valid number
-    header('Location: index.php');
+    header('Location: navbar.php');
     exit;
 }
 
@@ -25,7 +25,7 @@ $articleId = $_GET['article_id'];
 $article = getArticleById($articleId);
 
 if (!$article) {
-    header('Location: index.php');
+    header('Location: navbar.php');
     exit;
 }
 ?>
@@ -37,7 +37,7 @@ if (!$article) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager de Articole</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="editArticle.css">
 </head>
 
 <body>
@@ -48,7 +48,7 @@ if (!$article) {
         <p class="error"><?php echo $error_message; ?></p>
     <?php endif; ?>
 
-    <form action="edit_article.php" method="POST">
+    <form action="editArticle.php" method="POST">
         <input type="hidden" name="article_id" value="<?php echo $articleId; ?>">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" value="<?php echo $article['titlu']; ?>" required>

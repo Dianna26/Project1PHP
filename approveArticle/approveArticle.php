@@ -3,7 +3,7 @@ include '../database/db.php';
 
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['rol'] !== 'editor') {
-    header('Location: index.php');
+    header('Location: navbar.php');
     exit;
 }
 

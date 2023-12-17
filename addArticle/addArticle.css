@@ -69,7 +69,7 @@ button {
 }
 
 button.back-btn {
-    background-color: #808080; /* Gray color */
+    background-color: #808080;
     color: white;
     padding: 10px;
     border: none;

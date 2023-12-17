@@ -3,7 +3,7 @@ include '../database/db.php';
 
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-    header('Location: index.php');
+    header('Location: navbar.php');
     exit;
 }
 ?>
@@ -13,9 +13,8 @@ if (!isset($_SESSION['loggedin'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Article Management</title>
+    <link rel="stylesheet" href="approveArticle.css">
 </head>
 
 <body>
@@ -36,7 +35,7 @@ if (!isset($_SESSION['loggedin'])) {
                 <p class="publish-date"><?php echo $article['data_publicare']  ?></p>
                 <?php
                 if ($_SESSION['rol'] === 'editor') : ?>
-                    <form action="approve_article.php" method="POST">
+                    <form action="approveArticle.php" method="POST">
                         <input type="hidden" name="article_id" value="<?php echo $article['id_articol']; ?>">
                         <button class="approve-button" type="submit">Approve</button>
                     </form>

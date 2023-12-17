@@ -15,13 +15,13 @@ if (!isset($_SESSION['loggedin'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manager de Articole</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Article Management</title>
+    <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
 <div class="container">
-    <?php include '../navbar/index.php'; ?>
+    <?php include '../navbar/navbar.php'; ?>
 
     <?php if (in_array($_SESSION['rol'], ['jurnalist', 'editor'])) : ?>
         <a href="../addArticle/index.php" class="button">Add Article</a>
@@ -30,7 +30,7 @@ if (!isset($_SESSION['loggedin'])) {
 
     <?php
     if ($_SESSION['rol'] === 'editor') : ?>
-        <a href="../unapprovedArticles/index.php" class="button">Unapproved Articles</a>
+        <a href="../approveArticle/index.php" class="button">Unapproved Articles</a>
     <?php endif; ?>
 
     <?php

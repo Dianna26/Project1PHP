@@ -1,28 +1,28 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-    header('Location: index.php');
+    header('Location: navbar.php');
     exit;
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Manager de Articole</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Article Management</title>
+    <link rel="stylesheet" href="addArticle.css">
 </head>
 
 <body>
 <div class="container">
     <div>
         <?php
-        include '../navbar/index.php';
+        include '../navbar/navbar.php';
         ?>
     </div>
-    <form action="add_article.php" method="post">
+    <form action="addArticle.php" method="post">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" required>
 
